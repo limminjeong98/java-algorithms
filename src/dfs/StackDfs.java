@@ -16,7 +16,7 @@ public class StackDfs {
             int currentNode = stack.pop();
             if (visited[currentNode]) continue;
             visited[currentNode] = true;
-            System.out.println(currentNode + " ");
+            System.out.print(currentNode + " ");
             for (int nextNode = 0; nextNode < N; nextNode++) {
                 if (!visited[nextNode] && Graph[currentNode][nextNode] != 0) {
                     stack.push(nextNode);

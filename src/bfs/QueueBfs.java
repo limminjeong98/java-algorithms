@@ -1,21 +1,27 @@
-package dfs;
+package bfs;
 
 import java.util.*;
 
-public class RecursiveCallDfs {
+public class QueueBfs {
     static final int MAX_N = 10;
     static int N, E;
     static int[][] Graph = new int[MAX_N][MAX_N];
-    static boolean[] Visited = new boolean[MAX_N];
 
-    //    recursive call
-    static void dfs(int node) {
-        Visited[node] = true;
-        System.out.print(node + " ");
+    static void bfs(int node) {
+        boolean[] visited = new boolean[MAX_N];
 
-        for (int nextNode = 0; nextNode < N; nextNode++) {
-            if (!Visited[nextNode] && Graph[node][nextNode] != 0) {
-                dfs(nextNode);
+        Queue<Integer> queue = new LinkedList<>();
+        visited[node] = true;
+        queue.add(node);
+
+        while (!queue.isEmpty()) {
+            int cur = queue.remove();
+            System.out.print(cur + " ");
+            for (int next = 0; next < N; next++) {
+                if (!visited[next] && Graph[cur][next] != 0) {
+                    visited[next] = true;
+                    queue.add(next);
+                }
             }
         }
     }
@@ -25,7 +31,6 @@ public class RecursiveCallDfs {
         N = sc.nextInt();
         E = sc.nextInt();
         //        5 6
-
         for (int i = 0; i < E; i++) {
             int u = sc.nextInt();
             int v = sc.nextInt();
@@ -37,11 +42,11 @@ public class RecursiveCallDfs {
         //        1 4
         //        2 4
         //        3 4
-        dfs(0);
+        bfs(0);
         //        0
-        //        2
-        //        4
-        //        3
         //        1
+        //        2
+        //        3
+        //        4
     }
 }
